@@ -1,6 +1,6 @@
-# Project Progress Log
+# Project Progress — Stride Emission
 
-This document tracks the detailed development history of the **Stride Emission** program and related scripts.  
+This document tracks the detailed development history of the **Stride Emission** Solana Anchor program and scripts, plus the latest verified state from localnet testing.  
 It serves as a transparent log for collaborators, grant reviewers, and community members.
 
 ---
@@ -40,8 +40,26 @@ It serves as a transparent log for collaborators, grant reviewers, and community
 
 ---
 
-## Next Steps
-- Continue testing any remaining scripts.
-- Commit and push changes regularly after verified improvements.
-- Expand README with example transactions and code snippets.
-- Start tracking performance benchmarks and gas usage for transparency.
+## 2025-08-14 — Localnet Verified State
+
+### ✅ What’s working
+- **Program deploys** and **PDAs derive** as expected.
+- **Initialize/Configure** works (re-run of `init.ts` fails with “already in use” as expected).
+- **Stake flow** correctly transfers tokens into vault ATA.
+- **Unstake flow** returns tokens from vault ATA to user ATA.
+- **Claim rewards** works and is **epoch-gated** by `state.last_epoch`.
+- **Epoch tick** script advances `last_epoch` to allow the next claim.
+- **Read scripts** for state, user, and balances all functioning.
+
+### Key Addresses (this run)
+- Program ID: `2TadYr2dGaUV7Wi2uFZn1J6eF1Kdju9zpUzoWdTedrhw`
+- State PDA: `3sYbvhedE9S1QFQpfui2fxKiYudn99CvnPUgEWxYqm27`
+- Mint: `Fcrke8UhayYM1MwDufituXELiFfnNPUjmk9Q7Bt4pPZF`
+- User pubkey: `Gkd9dqJkB72Foxvcb17GUYaxb79pyrvJYoT7nJ7ZRq3P`
+- UserAccount PDA: `9pHThTwdE26mNJFRWLdypewqBgSpog5bX39Dgjzx8NwS`
+- Vault authority PDA: `9WsnMUX1kPyb6vXhrDvZLmvM83yGTXurAK4eYwbzimHc`
+- Vault ATA: `3iF5h31bPobgfXQE1CxRMtkvCahe466UY6LsYLtanib8`
+- User ATA: `6LsFS35krujPdwpCq4FcipJrqgbLBkicDzm5TMp827dx`
+
+_All ATAs verified via `getAssociatedTokenAddressSync` and PDA derivation rules._
+
